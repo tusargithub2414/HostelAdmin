@@ -1,15 +1,17 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { HeaderComponent } from './header/header.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
-import {Sidebar} from './sidebar/sidebar.service'
+import {Sidebar} from './sidebar/sidebar.service';
+import {Authguard} from './login/authguard.service'
 const routes: Routes = [
 Sidebar.routs([
-  // { path: '', redirectTo: 'home', pathMatch: 'full', },
-  { path: 'home', component:HeaderComponent },
-  { path: 'login', component:LoginComponent}
-])
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: 'home', component:DashboardComponent,canActivate:[Authguard] }
 
+]),
+
+{ path: 'login', component:LoginComponent}
 
 
 ];
